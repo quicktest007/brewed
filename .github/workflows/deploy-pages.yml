@@ -28,7 +28,7 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: cd web && npm install
+        run: cd web && (test -f package-lock.json && npm ci || npm install)
 
       - name: Build
         run: cd web && npm run build

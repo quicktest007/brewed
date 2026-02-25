@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Feed from './pages/Feed'
 import Map from './pages/Map'

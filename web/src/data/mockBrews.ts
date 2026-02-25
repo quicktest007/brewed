@@ -52,7 +52,7 @@ export const coffeeTypes = [
   'Espresso', 'Ristretto', 'Lungo', 'Doppio', 'Americano',
   'Latte', 'Cappuccino', 'Flat White', 'Cortado', 'Macchiato',
   'Mocha', 'White Mocha', 'Affogato', 'Vienna Coffee',
-  'Cold Brew', 'Frappuccino',
+  'Pour Over', 'Drip', 'Cold Brew', 'Frappuccino',
 ]
 
 export const tastingNotes = [

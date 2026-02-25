@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { mockBrews } from '../data/mockBrews'
+import { useBrewStore } from '../context/BrewStore'
+import type { Brew } from '../data/mockBrews'
 import './Feed.css'
 
 function RatingBeans({ rating }: { rating: number }) {
@@ -13,12 +14,13 @@ function RatingBeans({ rating }: { rating: number }) {
   )
 }
 
-function BrewCard({ brew }: { brew: typeof mockBrews[0] }) {
+function BrewCard({ brew }: { brew: Brew }) {
   return (
     <article className="brew-card">
       <div className="brew-header">
         <RatingBeans rating={brew.rating} />
         <span className="brew-type">{brew.coffeeType}</span>
+        {brew.userName === 'You' && <span className="brew-you-badge">You</span>}
       </div>
       <div className="brew-place">
         {brew.placeName ? `${brew.placeName}${brew.placeNeighborhood ? ` · ${brew.placeNeighborhood}` : ''}` : 'At home'}
@@ -36,6 +38,7 @@ function BrewCard({ brew }: { brew: typeof mockBrews[0] }) {
 }
 
 export default function Feed() {
+  const { brews } = useBrewStore()
   return (
     <div className="feed-page">
       <header className="feed-header">
@@ -49,7 +52,7 @@ export default function Feed() {
       <main className="feed-main">
         <h2>Feed</h2>
         <div className="brew-list">
-          {mockBrews.map((brew) => (
+          {brews.map((brew) => (
             <BrewCard key={brew.id} brew={brew} />
           ))}
         </div>

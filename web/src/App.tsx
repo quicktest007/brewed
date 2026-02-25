@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import BottomNav from './components/BottomNav'
 import Landing from './pages/Landing'
 import Feed from './pages/Feed'
 import Map from './pages/Map'
@@ -14,6 +15,7 @@ function App() {
         <Route path="/map" element={<Map />} />
         <Route path="/add" element={<AddBrew />} />
       </Routes>
+      <BottomNav />
     </div>
   )
 }

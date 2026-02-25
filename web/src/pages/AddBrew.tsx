@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useBrewStore } from '../context/BrewStore'
 import { coffeeTypes, tastingNotes, mockPlaces } from '../data/mockBrews'
 import './AddBrew.css'
 
 export default function AddBrew() {
+  const { addBrew } = useBrewStore()
   const [rating, setRating] = useState(5)
   const [atHome, setAtHome] = useState(true)
   const [place, setPlace] = useState<string | null>(null)
@@ -23,6 +25,16 @@ export default function AddBrew() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!coffeeType || (!atHome && !place)) return
+    const placeObj = !atHome && place ? mockPlaces.find((p) => p.id === place) : null
+    addBrew({
+      rating,
+      placeName: placeObj?.name ?? null,
+      placeNeighborhood: placeObj?.neighborhood,
+      coffeeType,
+      tastingNotes: Array.from(notes),
+      caption: comments.trim(),
+    })
     setSubmitted(true)
   }
 
@@ -35,7 +47,17 @@ export default function AddBrew() {
           <h2>☕ Brew posted!</h2>
           <p>Thanks for sharing. Check your feed.</p>
           <Link to="/feed" className="btn btn-primary">View Feed</Link>
-          <button className="btn btn-secondary" onClick={() => setSubmitted(false)}>Post another</button>
+          <button className="btn btn-secondary" onClick={() => {
+            setSubmitted(false)
+            setRating(5)
+            setAtHome(true)
+            setPlace(null)
+            setCoffeeType(null)
+            setNotes(new Set())
+            setComments('')
+          }}>
+            Post another
+          </button>
         </div>
       </div>
     )

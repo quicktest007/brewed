@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import './Card.css'
 
 type CardProps = {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 

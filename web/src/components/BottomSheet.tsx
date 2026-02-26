@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react'
 import './BottomSheet.css'
 
 type BottomSheetProps = {
   title?: string
   subtitle?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function BottomSheet({ title, subtitle, children }: BottomSheetProps) {

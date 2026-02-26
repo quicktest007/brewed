@@ -6,7 +6,6 @@ import Chip from '../components/Chip'
 import './Profile.css'
 
 const tasteProfile = ['Latte', 'Pour Over', 'Espresso']
-const badges = ['First Brew', '10 Shops', 'World Traveler']
 
 export default function Profile() {
   const { brews } = useBrewStore()

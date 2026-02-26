@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import './PhoneShell.css'
 
 type PhoneShellProps = {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function PhoneShell({ children }: PhoneShellProps) {

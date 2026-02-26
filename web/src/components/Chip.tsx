@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import './Chip.css'
 
 type ChipProps = {
-  children: React.ReactNode
+  children: ReactNode
   selected?: boolean
   onClick?: () => void
   as?: 'button' | 'span'

@@ -41,12 +41,12 @@ export function BrewStoreProvider({ children }: { children: ReactNode }) {
     saveUserBrews(userBrews)
   }, [userBrews])
 
-  const addBrew = useCallback((brew: Omit<Brew, 'id' | 'userName' | 'timestamp'>) => {
+  const addBrew = useCallback((brew: Omit<Brew, 'id' | 'userName'>) => {
     const newBrew: Brew = {
       ...brew,
       id: `user-${Date.now()}`,
       userName: 'You',
-      timestamp: 'Just now',
+      timestamp: brew.timestamp ?? 'Just now',
     }
     setUserBrews((prev) => [newBrew, ...prev])
   }, [])

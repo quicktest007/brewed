@@ -1,0 +1,66 @@
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: var(--space-sm) var(--space-sm) max(var(--space-md), env(safe-area-inset-bottom));
+  background: var(--card);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+
+.tab-bar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-sm);
+  color: var(--muted);
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.tab-bar-link:hover {
+  color: var(--accent);
+}
+
+.tab-bar-link.active {
+  color: var(--accent);
+}
+
+.tab-bar-link svg {
+  flex-shrink: 0;
+}
+
+.tab-bar-add {
+  width: 56px;
+  height: 56px;
+  margin-top: -24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-float);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.tab-bar-add:hover,
+.tab-bar-add.active {
+  transform: scale(1.05);
+}
+
+.tab-bar-add:active {
+  transform: scale(0.98);
+}

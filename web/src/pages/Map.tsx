@@ -1,77 +1,84 @@
 import { useState } from 'react'
-import AppHeader from '../components/AppHeader'
+import PageTitle from '../components/PageTitle'
+import Chip from '../components/Chip'
+import BottomSheet from '../components/BottomSheet'
 import { mockPlaces } from '../data/mockBrews'
+import type { Place } from '../data/mockBrews'
 import './Map.css'
 
-type Place = typeof mockPlaces[0]
+const mapFilters = ['Open now', 'Espresso', 'Pour over']
 
 export default function Map() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null)
   const [selected, setSelected] = useState<Place | null>(null)
 
   return (
     <div className="map-page">
-      <AppHeader />
-      <main className="map-main">
-        <div className="map-container">
-          <div className="map-canvas">
-            {/* Simulated map background with grid */}
-            <div className="map-grid" />
-            {mockPlaces.map((place, i) => {
-              const positions = [
-                { left: '22%', top: '30%' },
-                { left: '72%', top: '28%' },
-                { left: '18%', top: '68%' },
-                { left: '68%', top: '65%' },
-              ]
-              const pos = positions[i] || positions[0]
-              return (
-              <button
-                key={place.id}
-                type="button"
-                className={`map-pin ${selected?.id === place.id ? 'active' : ''}`}
-                style={{ left: pos.left, top: pos.top }}
-                onClick={() => setSelected(selected?.id === place.id ? null : place)}
-                aria-label={`${place.name}, ${place.neighborhood}`}
-              >
-                <span className="map-pin-dot" />
-              </button>
-              )
-            })}
+      <PageTitle>Map</PageTitle>
+      <div className="map-content">
+        <div className="map-area">
+          <div className="map-search-wrap">
+            <input
+              type="text"
+              className="map-search"
+              placeholder="Search coffee shops"
+            />
           </div>
-        </div>
-        {selected && (
-          <div className="map-card" role="dialog" aria-label={`${selected.name} details`}>
-            <button
-              type="button"
-              className="map-card-close"
-              onClick={() => setSelected(null)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <div className="map-card-photo" />
-            <div className="map-card-body">
-              <h2>{selected.name}</h2>
-              <p>{selected.neighborhood}, {selected.city}</p>
-              <button type="button" className="btn btn-primary btn-sm">View details</button>
+          <div className="map-placeholder">
+            <div className="map-pins">
+              {mockPlaces.map((p, i) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  className={`map-pin ${selected?.id === p.id ? 'active' : ''}`}
+                  style={{
+                    left: [22, 72, 18, 68][i] + '%',
+                    top: [30, 28, 68, 65][i] + '%',
+                  }}
+                  onClick={() => setSelected(selected?.id === p.id ? null : p)}
+                  aria-label={p.name}
+                >
+                  <span className="map-pin-dot" />
+                </button>
+              ))}
             </div>
           </div>
-        )}
-        <div className="map-list">
-          <h3>Nearby</h3>
-          {mockPlaces.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              className={`map-list-item ${selected?.id === p.id ? 'active' : ''}`}
-              onClick={() => setSelected(p)}
-            >
-              <span className="map-list-name">{p.name}</span>
-              <span className="map-list-loc">{p.neighborhood}, {p.city}</span>
-            </button>
-          ))}
         </div>
-      </main>
+        <BottomSheet title="Nearby" subtitle={`${mockPlaces.length} places`}>
+          <div className="map-filters">
+            {mapFilters.map((f) => (
+              <Chip
+                key={f}
+                selected={activeFilter === f}
+                onClick={() => setActiveFilter(activeFilter === f ? null : f)}
+              >
+                {f}
+              </Chip>
+            ))}
+          </div>
+          <div className="map-place-list">
+            {mockPlaces.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                className={`map-place-card ${selected?.id === p.id ? 'active' : ''}`}
+                onClick={() => setSelected(p)}
+              >
+                <div className="map-place-main">
+                  <span className="map-place-name">{p.name}</span>
+                  <span className="map-place-neighborhood">{p.neighborhood}</span>
+                </div>
+                <div className="map-place-meta">
+                  <span>{p.rating ?? '—'}</span>
+                  <span>{p.priceRange ?? '—'}</span>
+                  <span>{p.brewsCount ?? 0} brews</span>
+                </div>
+                <span className="map-place-chevron">›</span>
+              </button>
+            ))}
+          </div>
+        </BottomSheet>
+      </div>
     </div>
   )
 }

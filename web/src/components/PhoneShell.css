@@ -1,0 +1,31 @@
+.phone-shell {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #E8E4DD;
+  padding: 0;
+}
+
+@media (min-width: 431px) {
+  .phone-shell {
+    padding: var(--space-lg) 0;
+  }
+}
+
+.phone-frame {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+}
+
+@media (min-width: 431px) {
+  .phone-frame {
+    min-height: 90vh;
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+}

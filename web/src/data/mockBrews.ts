@@ -72,11 +72,23 @@ export const mockBrews: Brew[] = [
   },
 ]
 
-export const mockPlaces = [
-  { id: '1', name: 'Sightglass Coffee', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7599, lng: -122.4214 },
-  { id: '2', name: 'Ritual Coffee Roasters', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7605, lng: -122.4210 },
-  { id: '3', name: 'Blue Bottle Coffee', neighborhood: 'SOMA', city: 'San Francisco', lat: 37.7850, lng: -122.4035 },
-  { id: '4', name: 'Four Barrel Coffee', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7630, lng: -122.4215 },
+export interface Place {
+  id: string
+  name: string
+  neighborhood: string
+  city: string
+  lat: number
+  lng: number
+  rating?: number
+  priceRange?: string
+  brewsCount?: number
+}
+
+export const mockPlaces: Place[] = [
+  { id: '1', name: 'Sightglass Coffee', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7599, lng: -122.4214, rating: 4.5, priceRange: '$$', brewsCount: 12 },
+  { id: '2', name: 'Ritual Coffee Roasters', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7605, lng: -122.4210, rating: 4.8, priceRange: '$$', brewsCount: 24 },
+  { id: '3', name: 'Blue Bottle Coffee', neighborhood: 'SOMA', city: 'San Francisco', lat: 37.7850, lng: -122.4035, rating: 4.2, priceRange: '$$', brewsCount: 18 },
+  { id: '4', name: 'Four Barrel Coffee', neighborhood: 'Mission', city: 'San Francisco', lat: 37.7630, lng: -122.4215, rating: 4.6, priceRange: '$', brewsCount: 8 },
 ]
 
 export const coffeeTypes = [

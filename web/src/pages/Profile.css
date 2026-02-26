@@ -1,172 +1,104 @@
 .profile-page {
   min-height: 100vh;
-  padding-bottom: 5.5rem;
-  background: var(--bg);
+  padding-bottom: 6rem;
 }
 
-.profile-main {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem;
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.profile-hero {
+.profile-settings {
+  padding: var(--space-md);
+  color: var(--muted);
+}
+
+.profile-settings:hover {
+  color: var(--accent);
+}
+
+.profile-content {
+  padding: 0 var(--space-lg) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.profile-card {
   text-align: center;
-  padding: 1.5rem 0;
-  animation: profile-fade-in 0.5s ease-out;
 }
 
 .profile-avatar {
-  width: 88px;
-  height: 88px;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-md);
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.75rem;
+  background: var(--accent);
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-name {
-  margin: 0 0 0.25rem;
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin: 0 0 2px;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--text);
 }
 
 .profile-handle {
   margin: 0;
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: var(--muted);
 }
 
-.profile-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  padding: 1.5rem;
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  animation: profile-fade-in 0.5s 0.1s ease-out both;
-}
-
-.profile-stat {
+.profile-stats-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
   text-align: center;
 }
 
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .profile-stat-value {
-  display: block;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--text);
 }
 
 .profile-stat-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  font-size: 0.6875rem;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.profile-progress,
-.profile-badges {
-  margin-bottom: 1.5rem;
-  animation: profile-fade-in 0.5s 0.2s ease-out both;
-}
-
-.profile-progress h2,
-.profile-badges h2 {
-  margin: 0 0 1rem;
+.profile-section h3 {
+  margin: 0 0 var(--space-sm);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
-.profile-progress-ring {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.profile-progress-ring svg {
-  transform: rotate(-90deg);
-}
-
-.profile-progress-bg {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 2.5;
-}
-
-.profile-progress-fill {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  transition: stroke-dasharray 0.5s ease;
-}
-
-.profile-progress-value {
-  position: absolute;
-  inset: 0;
+.profile-chips {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
-.profile-badge-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-}
-
-.profile-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  opacity: 0.5;
-  transition: all var(--transition);
-}
-
-.profile-badge.earned {
-  opacity: 1;
-  border-color: var(--accent);
-  background: var(--accent-subtle);
-}
-
-.profile-badge-icon {
-  font-size: 1.5rem;
-}
-
-.profile-badge-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text);
-  text-align: center;
-}
-
-.profile-actions {
-  display: flex;
-  justify-content: center;
-  padding-top: 0.5rem;
-}
-
-@keyframes profile-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.profile-mini-map {
+  height: 120px;
+  background: linear-gradient(180deg, #e8e4dd 0%, #d4cfc6 100%);
+  border-radius: var(--r-md);
 }

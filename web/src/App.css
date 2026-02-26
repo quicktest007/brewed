@@ -1,10 +1,3 @@
 .app {
-  min-height: 100vh;
-  padding-bottom: 5rem;
-  animation: app-fade-in 0.4s ease-out;
-}
-
-@keyframes app-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  /* Layout handled by PhoneShell */
 }

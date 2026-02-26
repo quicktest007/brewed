@@ -1,0 +1,27 @@
+.settings-page {
+  min-height: 100vh;
+  padding-bottom: 6rem;
+}
+
+.settings-header {
+  padding: var(--space-md) var(--space-lg);
+}
+
+.settings-back {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.settings-back:hover {
+  color: var(--accent);
+}
+
+.settings-content {
+  padding: var(--space-lg);
+}
+
+.settings-placeholder {
+  color: var(--muted);
+}

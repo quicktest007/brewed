@@ -1,0 +1,21 @@
+.chip {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1.5px solid rgba(107, 63, 42, 0.2);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 999px;
+  transition: all var(--transition);
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.chip.selected {
+  background: var(--accentSoft);
+  border-color: var(--accent);
+  color: var(--accent);
+}

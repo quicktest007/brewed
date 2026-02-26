@@ -1,87 +1,77 @@
 import { Link } from 'react-router-dom'
 import { useBrewStore } from '../context/BrewStore'
-import AppHeader from '../components/AppHeader'
+import PageTitle from '../components/PageTitle'
+import Card from '../components/Card'
+import Chip from '../components/Chip'
 import './Profile.css'
 
-const BADGES = [
-  { id: 'first', label: 'First Brew', earned: true, icon: '☕' },
-  { id: '10shops', label: '10 Shops', earned: true, icon: '📍' },
-  { id: 'traveler', label: 'World Traveler', earned: false, icon: '✈️' },
-  { id: 'roast', label: 'Roast Master', earned: false, icon: '🔥' },
-]
+const tasteProfile = ['Latte', 'Pour Over', 'Espresso']
+const badges = ['First Brew', '10 Shops', 'World Traveler']
 
 export default function Profile() {
   const { brews } = useBrewStore()
   const userBrews = brews.filter((b) => b.userName === 'You')
   const cities = [...new Set(brews.map((b) => b.placeCity).filter(Boolean))] as string[]
-  const favoriteRoast = 'Latte' // could derive from data
+  const avgRating = userBrews.length
+    ? userBrews.reduce((s, b) => s + b.rating, 0) / userBrews.length
+    : 0
+  const topMethod = 'Latte'
+  const mostVisited = cities[0] ?? '—'
 
   return (
     <div className="profile-page">
-      <AppHeader />
-      <main className="profile-main">
-        <div className="profile-hero">
-          <img
-            src="https://i.pravatar.cc/120?img=1"
-            alt=""
-            className="profile-avatar"
-          />
-          <h1 className="profile-name">You</h1>
-          <p className="profile-handle">@brewed_user</p>
-        </div>
-
-        <section className="profile-stats">
+      <div className="profile-header">
+        <PageTitle>Profile</PageTitle>
+        <Link to="/settings" className="profile-settings" aria-label="Settings">
+          <SettingsIcon />
+        </Link>
+      </div>
+      <div className="profile-content">
+        <Card className="profile-card">
+          <div className="profile-avatar">A</div>
+          <h2 className="profile-name">Alex</h2>
+          <p className="profile-handle">@alex_brews</p>
+        </Card>
+        <Card className="profile-stats-card">
+          <div className="profile-stat">
+            <span className="profile-stat-value">{avgRating.toFixed(1)}</span>
+            <span className="profile-stat-label">Avg rating</span>
+          </div>
           <div className="profile-stat">
             <span className="profile-stat-value">{userBrews.length}</span>
             <span className="profile-stat-label">Brews</span>
           </div>
           <div className="profile-stat">
-            <span className="profile-stat-value">{cities.length || 1}</span>
-            <span className="profile-stat-label">Cities</span>
+            <span className="profile-stat-value">{mostVisited}</span>
+            <span className="profile-stat-label">Most visited</span>
           </div>
           <div className="profile-stat">
-            <span className="profile-stat-value">{favoriteRoast}</span>
-            <span className="profile-stat-label">Favorite</span>
+            <span className="profile-stat-value">{topMethod}</span>
+            <span className="profile-stat-label">Top method</span>
           </div>
-        </section>
-
-        <section className="profile-progress">
-          <h2>Weekly Goal</h2>
-          <div className="profile-progress-ring">
-            <svg viewBox="0 0 36 36">
-              <path
-                className="profile-progress-bg"
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path
-                className="profile-progress-fill"
-                strokeDasharray={`${Math.min(userBrews.length * 20, 100)}, 100`}
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span className="profile-progress-value">{Math.min(userBrews.length * 2, 10)}/10</span>
-          </div>
-        </section>
-
-        <section className="profile-badges">
-          <h2>Badges</h2>
-          <div className="profile-badge-grid">
-            {BADGES.map((b) => (
-              <div
-                key={b.id}
-                className={`profile-badge ${b.earned ? 'earned' : ''}`}
-              >
-                <span className="profile-badge-icon">{b.icon}</span>
-                <span className="profile-badge-label">{b.label}</span>
-              </div>
+        </Card>
+        <section className="profile-section">
+          <h3>Taste profile</h3>
+          <div className="profile-chips">
+            {tasteProfile.map((t) => (
+              <Chip key={t} as="span" selected>{t}</Chip>
             ))}
           </div>
         </section>
-
-        <div className="profile-actions">
-          <Link to="/" className="btn btn-primary">Back to Feed</Link>
-        </div>
-      </main>
+        <section className="profile-section">
+          <h3>Where you&apos;ve brewed</h3>
+          <div className="profile-mini-map" />
+        </section>
+      </div>
     </div>
+  )
+}
+
+function SettingsIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
   )
 }

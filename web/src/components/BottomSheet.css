@@ -1,0 +1,30 @@
+.bottom-sheet {
+  background: var(--card);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+  padding: var(--space-lg);
+}
+
+.bottom-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.bottom-sheet-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bottom-sheet-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.bottom-sheet-content {
+  max-height: 50vh;
+  overflow-y: auto;
+}

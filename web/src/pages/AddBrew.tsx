@@ -1,7 +1,16 @@
 import { useState } from 'react'
+
+function LeafIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C8 8 4 12 4 16c0 3 2 4 8 4s8-1 8-4c0-4-4-8-8-14z" />
+    </svg>
+  )
+}
 import { Link, useNavigate } from 'react-router-dom'
 import { useBrewStore } from '../context/BrewStore'
 import { coffeeTypes, tastingNotes, mockPlaces } from '../data/mockBrews'
+import Chip from '../components/Chip'
 import './AddBrew.css'
 
 export default function AddBrew() {
@@ -61,7 +70,7 @@ export default function AddBrew() {
           <h2>Brew posted</h2>
           <p>Thanks for sharing. Check your feed.</p>
           <div className="add-modal-actions">
-            <Link to="/" className="btn btn-primary" onClick={resetForm}>View Feed</Link>
+            <Link to="/feed" className="btn btn-primary" onClick={resetForm}>View Feed</Link>
             <button type="button" className="btn btn-secondary" onClick={resetForm}>
               Post another
             </button>
@@ -80,41 +89,32 @@ export default function AddBrew() {
     >
       <div className="add-modal" onClick={(e) => e.stopPropagation()}>
         <header className="add-modal-header">
-          <h1>New Brew</h1>
-          <button
-            type="button"
-            className="add-modal-close"
-            onClick={closeModal}
-            aria-label="Close"
-          >
-            ×
+          <button type="button" className="add-modal-cancel" onClick={closeModal}>
+            Cancel
           </button>
+          <h1>Add Brew</h1>
+          <span />
         </header>
         <form className="add-modal-form" onSubmit={handleSubmit}>
-          <section className="add-photo-section">
-            <label>Photo</label>
-            <div className="add-photo-upload">
-              <span className="add-photo-icon">+</span>
-              <span>Tap to add photo</span>
-            </div>
-          </section>
           <section>
-            <label>Rating</label>
-            <div className="add-rating-pills">
+            <label>How was it?</label>
+            <div className="add-rating-row">
               {[1, 2, 3, 4, 5].map((r) => (
                 <button
                   key={r}
                   type="button"
-                  className={`add-rating-pill ${r <= rating ? 'filled' : ''}`}
+                  className={`add-rating-btn ${r <= rating ? 'filled' : ''}`}
                   onClick={() => setRating(r)}
                   aria-pressed={r <= rating}
-                />
+                >
+                  <LeafIcon />
+                </button>
               ))}
             </div>
           </section>
           <section>
-            <label>Where</label>
-            <div className="where-tabs">
+            <label>Where did you brew?</label>
+            <div className="add-where-tabs">
               <button
                 type="button"
                 className={atHome ? 'active' : ''}
@@ -131,12 +131,12 @@ export default function AddBrew() {
               </button>
             </div>
             {!atHome && (
-              <div className="place-picker">
+              <div className="add-place-list">
                 {mockPlaces.map((p) => (
                   <button
                     key={p.id}
                     type="button"
-                    className={`place-option ${place === p.id ? 'selected' : ''}`}
+                    className={`add-place-btn ${place === p.id ? 'selected' : ''}`}
                     onClick={() => setPlace(p.id)}
                   >
                     {p.name} · {p.neighborhood}
@@ -147,36 +147,33 @@ export default function AddBrew() {
           </section>
           <section>
             <label>What did you have?</label>
-            <div className="chip-grid">
+            <div className="add-chips">
               {coffeeTypes.map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  className={`chip ${coffeeType === c ? 'selected' : ''}`}
-                  onClick={() => setCoffeeType(c)}
-                >
+                <Chip key={c} selected={coffeeType === c} onClick={() => setCoffeeType(c)}>
                   {c}
-                </button>
+                </Chip>
               ))}
             </div>
           </section>
           <section>
             <label>Tasting notes</label>
-            <div className="chip-grid">
+            <div className="add-chips">
               {tastingNotes.map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  className={`chip ${notes.has(n) ? 'selected' : ''}`}
-                  onClick={() => toggleNote(n)}
-                >
+                <Chip key={n} selected={notes.has(n)} onClick={() => toggleNote(n)}>
                   {n}
-                </button>
+                </Chip>
               ))}
             </div>
           </section>
           <section>
-            <label>Review</label>
+            <label>Photo (optional)</label>
+            <div className="add-photo-btns">
+              <button type="button" className="add-photo-btn">Take photo</button>
+              <button type="button" className="add-photo-btn">Library</button>
+            </div>
+          </section>
+          <section>
+            <label>Additional comments (optional)</label>
             <textarea
               placeholder="Notes, vibe, anything else..."
               value={comments}

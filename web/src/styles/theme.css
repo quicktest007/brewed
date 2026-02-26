@@ -1,0 +1,35 @@
+/**
+ * Brewed Design System - iOS-style coffee app
+ * Cream/beige background, espresso-brown accent
+ */
+:root {
+  /* Colors */
+  --bg: #F6F1EA;
+  --card: #FFFFFF;
+  --text: #111111;
+  --muted: #6B6B6B;
+  --accent: #6B3F2A;
+  --accentSoft: rgba(107, 63, 42, 0.10);
+  --accentLight: rgba(107, 63, 42, 0.06);
+
+  /* Radius - iOS large corners */
+  --r-lg: 24px;
+  --r-md: 18px;
+  --r-sm: 12px;
+
+  /* Shadow - subtle iOS card */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Typography */
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

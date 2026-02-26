@@ -45,6 +45,13 @@
   position: relative;
 }
 
+.map-map-wrap {
+  height: 280px;
+  border-radius: var(--r-md);
+  margin-top: var(--space-md);
+  overflow: hidden;
+}
+
 .map-pins {
   position: absolute;
   inset: 0;

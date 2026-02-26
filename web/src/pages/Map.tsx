@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import PageTitle from '../components/PageTitle'
 import Chip from '../components/Chip'
 import BottomSheet from '../components/BottomSheet'
+import BrewMap from '../components/BrewMap'
 import { mockPlaces } from '../data/mockBrews'
 import type { Place } from '../data/mockBrews'
 import './Map.css'
@@ -11,6 +12,10 @@ const mapFilters = ['Open now', 'Espresso', 'Pour over']
 export default function Map() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null)
   const [selected, setSelected] = useState<Place | null>(null)
+
+  const handleSelectPlace = useCallback((place: Place) => {
+    setSelected((prev) => (prev?.id === place.id ? null : place))
+  }, [])
 
   return (
     <div className="map-page">
@@ -24,24 +29,13 @@ export default function Map() {
               placeholder="Search coffee shops"
             />
           </div>
-          <div className="map-placeholder">
-            <div className="map-pins">
-              {mockPlaces.map((p, i) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  className={`map-pin ${selected?.id === p.id ? 'active' : ''}`}
-                  style={{
-                    left: [22, 72, 18, 68][i] + '%',
-                    top: [30, 28, 68, 65][i] + '%',
-                  }}
-                  onClick={() => setSelected(selected?.id === p.id ? null : p)}
-                  aria-label={p.name}
-                >
-                  <span className="map-pin-dot" />
-                </button>
-              ))}
-            </div>
+          <div className="map-map-wrap">
+            <BrewMap
+              places={mockPlaces}
+              selectedPlace={selected}
+              onSelectPlace={handleSelectPlace}
+              flyToPlace={selected}
+            />
           </div>
         </div>
         <BottomSheet title="Nearby" subtitle={`${mockPlaces.length} places`}>
@@ -62,7 +56,7 @@ export default function Map() {
                 key={p.id}
                 type="button"
                 className={`map-place-card ${selected?.id === p.id ? 'active' : ''}`}
-                onClick={() => setSelected(p)}
+                onClick={() => handleSelectPlace(p)}
               >
                 <div className="map-place-main">
                   <span className="map-place-name">{p.name}</span>

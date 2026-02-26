@@ -4,160 +4,23 @@
   background: var(--bg);
 }
 
-.feed-header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  z-index: 50;
-}
-
-.feed-header h1 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-.feed-header nav {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-}
-
-.feed-header nav a {
-  color: var(--text-muted);
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: color var(--transition);
-}
-
-.feed-header nav a:hover {
-  color: var(--accent);
-}
-
-.add-link {
-  color: var(--accent) !important;
-  font-weight: 600 !important;
-}
-
 .feed-main {
   max-width: 520px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem;
+  padding: 1rem 1rem 1.5rem;
 }
 
-.feed-main h2 {
-  margin: 0 0 1.25rem;
-  font-size: 1rem;
+.feed-title {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.brew-list {
+.feed-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.brew-card {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition);
-}
-
-.brew-card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow);
-}
-
-.brew-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.brew-you-badge {
-  margin-left: auto;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: var(--accent-soft);
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-}
-
-.rating-beans {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.bean {
-  opacity: 0.25;
-  font-size: 1rem;
-  transition: opacity var(--transition);
-}
-
-.bean.filled {
-  opacity: 1;
-}
-
-.rating-text {
-  margin-left: 0.5rem;
-  font-weight: 600;
-  color: var(--rating);
-  font-size: 0.875rem;
-}
-
-.brew-type {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.brew-place {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.brew-notes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  margin-bottom: 0.5rem;
-}
-
-.note-tag {
-  font-size: 0.6875rem;
-  padding: 0.25rem 0.5rem;
-  background: var(--accent-subtle);
-  color: var(--accent);
-  border-radius: 999px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.brew-caption {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--text);
-  line-height: 1.55;
+  gap: 1.25rem;
 }

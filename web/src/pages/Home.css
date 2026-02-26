@@ -1,0 +1,17 @@
+.home-page {
+  min-height: 100vh;
+  padding-bottom: 5.5rem;
+  background: var(--bg);
+}
+
+.home-feed {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.home-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem 1rem 1.5rem;
+}

@@ -36,6 +36,7 @@ export default function AddBrew() {
       coffeeType,
       tastingNotes: Array.from(notes),
       caption: comments.trim(),
+      timestamp: 'Just now',
     })
     setSubmitted(true)
   }
